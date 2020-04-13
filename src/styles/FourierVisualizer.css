@@ -1,0 +1,7 @@
+.fourier-visualizer:hover {
+  cursor: grab;
+}
+
+.fourier-visualizer:active {
+  cursor: grabbing;
+}

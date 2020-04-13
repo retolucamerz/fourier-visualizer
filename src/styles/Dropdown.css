@@ -1,0 +1,17 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown-icon {
+  display: flex;
+  margin-left: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  margin-left: 1rem;
+  margin-top: 0.2rem;
+}

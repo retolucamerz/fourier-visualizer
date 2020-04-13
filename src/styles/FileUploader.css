@@ -1,0 +1,15 @@
+/* modified from https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */
+
+.file-uploader input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.file-uploader label {
+  padding: 0.5rem;
+  display: flex;
+}

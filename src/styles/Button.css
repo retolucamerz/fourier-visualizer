@@ -1,0 +1,34 @@
+.button {
+  transition: background-color 0.3s;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:focus {
+  /* not accessible via keyboard, but you need mouse to draw anyway */
+  outline: none;
+}
+
+.button-red {
+  background-color: #e74c3c;
+}
+
+.button-red:hover,
+.button-red:active {
+  background-color: #c13f32;
+}
+
+.button-blue {
+  background-color: #3498db;
+  font-size: 1.5rem;
+}
+
+.button-blue:hover,
+.button-blue:active {
+  background-color: #2980b9;
+}

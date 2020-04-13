@@ -1,0 +1,103 @@
+.controls {
+  display: flex;
+  flex-direction: row;
+
+  background-color: #ecf0f1;
+  border: 2px solid #3498db;
+  border-radius: 0.5rem;
+}
+
+.circles-slider-container {
+  width: 6rem;
+  border-right: 1px solid grey;
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circles-slider-container p {
+  font-weight: bold;
+}
+
+.secondary-controls {
+  width: 14rem;
+}
+
+.playback-container {
+  display: flex;
+  border-bottom: 1px solid grey;
+}
+
+.toggles-container {
+  border-bottom: 1px solid grey;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.toggle-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.toggle-container p {
+  margin: 0;
+}
+
+.slider-container {
+  flex: 1;
+  padding-left: 1rem;
+  padding-right: 2rem;
+  text-align: left;
+}
+
+.slider-container p {
+  margin-bottom: 0;
+}
+
+.controls p {
+  color: black;
+  font-size: 1rem;
+}
+
+.reference-control-container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid grey;
+}
+
+.reference-select {
+  margin-top: 1rem !important;
+  margin-right: 1rem !important;
+  margin-bottom: -0.5rem !important;
+  align-self: flex-end;
+}
+
+.download-container {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.download-container button {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+/* BUTTONS */
+.pause-button {
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+
+  transition: color 0.2s;
+}
+
+.pause-button:hover {
+  color: #339add;
+  cursor: pointer;
+}
