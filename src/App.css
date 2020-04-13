@@ -57,15 +57,9 @@ main {
 }
 
 /* mobile scrolling fix from https://stackoverflow.com/a/33953987/11520964 */
-html {
-  overflow: hidden;
-  width: 100%;
-}
 body {
-  height: 100%;
-  position: fixed;
   /* prevent overscroll bounce*/
-  background-color: lightgreen;
+  background-color: #ecf0f1;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
