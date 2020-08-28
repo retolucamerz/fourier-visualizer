@@ -5,7 +5,7 @@ import React, {
   useCallback,
   useImperativeHandle,
   Ref,
-  forwardRef
+  forwardRef,
 } from "react";
 import { Path, ReferencePoint, Point, ControlsType } from "../types";
 import { ComplexNumber, SortedCoeffs } from "../fourierize";
@@ -17,7 +17,7 @@ import {
   isTouchEvent,
   colorGradient,
   HEADER_HEIGHT,
-  fourierFillColor
+  fourierFillColor,
 } from "../constants";
 
 import "../styles/FourierVisualizer.css";
@@ -41,7 +41,7 @@ const FourierVisualizer = forwardRef(
       controls,
       setReferencePoint,
       setZoom,
-      style = {}
+      style = {},
     }: Props,
     ref: Ref<{ downloadFourier: () => void }>
   ) => {
@@ -145,7 +145,7 @@ const FourierVisualizer = forwardRef(
           return elem;
         }
       );
-      fourierPathElems.every(x => x !== undefined) &&
+      fourierPathElems.every((x) => x !== undefined) &&
         setFourierPathElems(fourierPathElems);
 
       const drawingElem = drawPath(
@@ -207,7 +207,7 @@ const FourierVisualizer = forwardRef(
         if (isTouchEvent(event)) {
           lastDragRef.current = [
             event.touches[0].pageX,
-            event.touches[0].pageY
+            event.touches[0].pageY,
           ];
         }
       },
@@ -298,7 +298,7 @@ const FourierVisualizer = forwardRef(
 
       // change path widths according to zoom
       fourierPathElems &&
-        fourierPathElems.forEach(p => {
+        fourierPathElems.forEach((p) => {
           if (p) {
             p.setAttribute("stroke-width", `${fourierWidth / controls.zoom}px`);
           }
@@ -313,7 +313,7 @@ const FourierVisualizer = forwardRef(
       fourierPathElems,
       updateViewBox,
       controls.zoom,
-      controls.referencePoint
+      controls.referencePoint,
     ]);
 
     // onchange nCircles
@@ -345,7 +345,7 @@ const FourierVisualizer = forwardRef(
       fourierPathElems,
       controls.nCircles,
       controls.fillFourier,
-      controls.showFourier
+      controls.showFourier,
     ]);
 
     // onchange drawingVisible
@@ -360,22 +360,6 @@ const FourierVisualizer = forwardRef(
       );
     }, [drawingElem, controls.drawingVisible]);
 
-    useEffect(() => {
-      if (!svgRef.current) {
-        return;
-      }
-
-      const svg = svgRef.current;
-
-      svg.addEventListener("wheel", (event: WheelEvent) => {
-        event.preventDefault();
-
-        if (event.ctrlKey) {
-          setZoom(controls.zoom + 0.001 * event.deltaY);
-        }
-      });
-    }, [controls.zoom, setZoom]);
-
     // DOWNLOAD
     const downloadFourier = useCallback(() => {
       if (!fourierPathElems) {
@@ -387,8 +371,9 @@ const FourierVisualizer = forwardRef(
       const zW = window.innerWidth / controls.zoom;
       const zH = (window.innerHeight - 80) / controls.zoom;
 
-      const viewBox = `${cx - zW / 2} ${cy - zH / 2} ${cx + zW / 2} ${cy +
-        zH / 2}`;
+      const viewBox = `${cx - zW / 2} ${cy - zH / 2} ${cx + zW / 2} ${
+        cy + zH / 2
+      }`;
       const data =
         `<?xml version="1.0" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}">` +
         fourierPathElems[controls.nCircles - 1].outerHTML +
@@ -408,7 +393,7 @@ const FourierVisualizer = forwardRef(
         a.download = filename;
         document.body.appendChild(a);
         a.click();
-        setTimeout(function() {
+        setTimeout(function () {
           document.body.removeChild(a);
           window.URL.revokeObjectURL(url);
         }, 0);
@@ -417,7 +402,7 @@ const FourierVisualizer = forwardRef(
     useImperativeHandle(
       ref,
       () => ({
-        downloadFourier
+        downloadFourier,
       }),
       [downloadFourier]
     );
@@ -448,7 +433,7 @@ const FourierVisualizer = forwardRef(
         lastControlsRef.current = controls;
 
         const svg = svgRef.current;
-        animationElemsRef.current.forEach(e => svg.removeChild(e));
+        animationElemsRef.current.forEach((e) => svg.removeChild(e));
         const curElems: Element[] = [];
 
         if (!controls.circlesVisible && !controls.pointsVisible) {
