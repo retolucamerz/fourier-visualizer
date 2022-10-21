@@ -136,9 +136,9 @@ const FourierVisualizer = forwardRef(
             return document.createElementNS("", "path");
           }
 
-          if (controls.showFourier && i === controls.nCircles - 1) {
+          if (controls.showCurve && i === controls.nCircles - 1) {
             elem.setAttribute("stroke", "black");
-            controls.fillFourier && elem.setAttribute("fill", fourierFillColor);
+            controls.fillCurve && elem.setAttribute("fill", fourierFillColor);
             activeFourierPathRef.current = i;
           }
 
@@ -234,6 +234,7 @@ const FourierVisualizer = forwardRef(
         if (!isDragging) {
           return;
         }
+        event.preventDefault();
 
         if (isTouchEvent(event)) {
           const x = event.touches[0].pageX;
@@ -332,11 +333,11 @@ const FourierVisualizer = forwardRef(
       const activePath = fourierPathElems[controls.nCircles - 1];
       if (fourierPathElems.length > 1) {
         if (activePath) {
-          if (controls.showFourier) {
+          if (controls.showCurve) {
             activePath.setAttribute("stroke", "black");
           }
 
-          if (controls.fillFourier) {
+          if (controls.fillCurve) {
             activePath.setAttribute("fill", fourierFillColor);
           }
         }
@@ -344,8 +345,8 @@ const FourierVisualizer = forwardRef(
     }, [
       fourierPathElems,
       controls.nCircles,
-      controls.fillFourier,
-      controls.showFourier,
+      controls.fillCurve,
+      controls.showCurve,
     ]);
 
     // onchange drawingVisible
@@ -382,12 +383,7 @@ const FourierVisualizer = forwardRef(
 
       // from https://stackoverflow.com/questions/13405129/javascript-create-and-save-file
       var file = new Blob([data], { type: "svg" });
-      if (window.navigator.msSaveOrOpenBlob)
-        // IE10+
-        window.navigator.msSaveOrOpenBlob(file, filename);
-      else {
-        // Others
-        var a = document.createElement("a"),
+       var a = document.createElement("a"),
           url = URL.createObjectURL(file);
         a.href = url;
         a.download = filename;
@@ -397,7 +393,6 @@ const FourierVisualizer = forwardRef(
           document.body.removeChild(a);
           window.URL.revokeObjectURL(url);
         }, 0);
-      }
     }, [fourierPathElems, controls.nCircles, controls.zoom]);
     useImperativeHandle(
       ref,
@@ -419,17 +414,18 @@ const FourierVisualizer = forwardRef(
 
         // only reanimate if not paused or or chritical controls have changed
         const lastControls = lastControlsRef.current;
-        const controlsChanged =
+        const sameControls =
           lastControls &&
           controls.nCircles === lastControls.nCircles &&
           lastControls.pointsVisible === controls.pointsVisible &&
           lastControls.circlesVisible === controls.circlesVisible &&
           lastControls.referencePoint === controls.referencePoint &&
           lastControls.zoom === controls.zoom;
-        const rerender = !controls.paused || !controlsChanged;
-        if (!rerender) {
-          return;
-        }
+        // const rerender = !controls.paused || !sameControls;
+        // if (!rerender) {
+        //   return;
+        // }
+        if (controls.paused && sameControls) return;
         lastControlsRef.current = controls;
 
         const svg = svgRef.current;

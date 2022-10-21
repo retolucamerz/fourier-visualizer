@@ -9,8 +9,8 @@ export type ControlsType = {
   circlesVisible: boolean;
   pointsVisible: boolean;
   drawingVisible: boolean;
-  showFourier: boolean;
-  fillFourier: boolean;
+  showCurve: boolean;
+  fillCurve: boolean;
   referencePoint: ReferencePoint;
   zoom: number;
   paused: boolean;

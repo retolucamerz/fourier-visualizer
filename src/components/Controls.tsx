@@ -10,7 +10,7 @@ import {
 import PlayArrowIcon from "@material-ui/icons/PlayArrow";
 import PauseIcon from "@material-ui/icons/Pause";
 import { ReferencePoint, ControlsType } from "../types";
-import { minSpeed, maxSpeed, minZoom, maxZoom } from "../constants";
+import { minSpeed, maxSpeed, minZoom, maxZoom, maxCircles } from "../constants";
 import "../styles/Controls.css";
 
 export const DiscreteRootSlider = ({
@@ -194,10 +194,10 @@ const Controls = ({ controls, setControls, download }: Props) => {
           });
           break;
         case 52: // '4'
-          setControls({ ...controls, showFourier: !controls.showFourier });
+          setControls({ ...controls, showCurve: !controls.showCurve });
           break;
         case 53: // '5'
-          setControls({ ...controls, fillFourier: !controls.fillFourier });
+          setControls({ ...controls, fillCurve: !controls.fillCurve });
           break;
         case 80: // 'p'
           setControls({ ...controls, paused: !controls.paused });
@@ -221,7 +221,7 @@ const Controls = ({ controls, setControls, download }: Props) => {
           val={controls.nCircles}
           setVal={(nCircles) => setControls({ ...controls, nCircles })}
           minVal={1}
-          maxVal={100}
+          maxVal={maxCircles}
         />
       </div>
 
@@ -275,21 +275,21 @@ const Controls = ({ controls, setControls, download }: Props) => {
           </div>
 
           <div className="toggle-container">
-            <p>Show Fourier</p>
+            <p>Show Curve</p>
             <ToggleSwitch
-              checked={controls.showFourier}
-              setChecked={(showFourier) =>
-                setControls({ ...controls, showFourier })
+              checked={controls.showCurve}
+              setChecked={(showCurve) =>
+                setControls({ ...controls, showCurve })
               }
             />
           </div>
 
           <div className="toggle-container">
-            <p>Fill Fourier Area</p>
+            <p>Fill Curve</p>
             <ToggleSwitch
-              checked={controls.fillFourier}
-              setChecked={(fillFourier) =>
-                setControls({ ...controls, fillFourier })
+              checked={controls.fillCurve}
+              setChecked={(fillCurve) =>
+                setControls({ ...controls, fillCurve })
               }
             />
           </div>
@@ -306,7 +306,13 @@ const Controls = ({ controls, setControls, download }: Props) => {
           <div className="slider-container">
             <p>Zoom</p>
             <ExpSlider
-              setExp={(zoom) => setControls({ ...controls, zoom })}
+              setExp={(zoom) => {
+                let speed = controls.speed;
+
+                // let speed = maxSpeed/2 - (maxSpeed/2 - minSpeed) * (zoom - minZoom) / (maxZoom - minZoom);
+                console.log(speed)
+                
+                setControls({ ...controls, zoom, speed })}}
               min={minZoom}
               max={maxZoom}
             />

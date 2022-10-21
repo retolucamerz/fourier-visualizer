@@ -31,7 +31,7 @@ div#root .App {
   margin: 0;
 }
 
-@media only screen and (max-width: 665px) {
+@media only screen and (max-width: 680px) {
   .header-text {
     display: none;
   }
@@ -49,6 +49,12 @@ div#root .App {
   margin-right: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
+}
+
+@media only screen and (max-width: 680px) {
+  .toggle-button {
+    font-size: 2rem;
+  }
 }
 
 main {

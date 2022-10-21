@@ -1,5 +1,5 @@
 // GENERAL
-export const maxCircles = 100;
+export const maxCircles = 50;
 
 // LAYOUT
 export const HEADER_HEIGHT = 80;
@@ -9,8 +9,9 @@ export const T = 30;
 export const minSpeed = 0.05;
 export const maxSpeed = 5;
 
-export const minZoom = 0.5; // 0.75;
-export const maxZoom = 500;
+export const minZoom = 0.7; // 0.75;
+export const maxZoom = 200;
+// export const maxZoom = 500;
 
 export const fourierWidth = 2;
 export const drawingWidth = 3;
