@@ -109,12 +109,12 @@ const FourierVisualizer = forwardRef(
       pathElem.setAttribute("fill-rule", "evenodd");
       pathElem.setAttribute("fill", fill);
 
-      let pathStr = `M${path[0][0]},${path[0][1]}`;
+      let pathStr = `M ${path[0][0]},${path[0][1]}`;
       pathStr += path
         .slice(1)
-        .map(([x, y]) => `L${x},${y}`)
-        .join();
-      pathStr += `L${path[0][0]},${path[0][1]}`;
+        .map(([x, y]) => `L ${x},${y}`)
+        .join(' ');
+      pathStr += `L ${path[0][0]},${path[0][1]}`;
       pathElem.setAttribute("d", pathStr);
 
       return pathElem;
