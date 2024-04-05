@@ -59,6 +59,7 @@ const Dropdown = ({ children, selectorsBeloningToDropdown = [] }: Props) => {
         ref={buttonRef}
       >
         <ArrowDropDownIcon fontSize="large" />
+        <span>Settings</span>
       </button>
 
       <div

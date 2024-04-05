@@ -22,7 +22,7 @@ function App() {
   const [sortedCoeffs, setSortedCoeffs] = useState<SortedCoeffs>([]);
 
   const [controls, setControls] = useState<ControlsType>({
-    nCircles: 5,
+    nCircles: 8,
     circlesVisible: true,
     pointsVisible: true,
     drawingVisible: true,

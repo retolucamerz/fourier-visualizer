@@ -5,8 +5,9 @@
 .dropdown-icon {
   display: flex;
   margin-left: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 0;
+  padding-right: 1rem;
+  align-items: center;
 }
 
 .dropdown-content {
